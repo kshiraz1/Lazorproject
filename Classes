@@ -14,7 +14,83 @@ import numpy as np
 # intersecting blocks.
 class block:
     
-    def __init__(self, letter, name, deflect):
+    def __init__(self, letter, filename):
         self.letter = letter
-        self.name = name
-        self.deflect = deflect
+        if letter == 'A':
+            self.name = "Reflect"
+        elif letter == 'B':
+            self.name = "Opaque"
+        elif letter == 'C':
+            self.name = "Refract"   
+        self.position = position
+        self.grid = grid
+        
+    def num_blocks(self):
+        def find_line(lines, word):
+            for line in lines:
+                # check if string present on a current line
+                if line.find(word) != -1:
+                    i = lines.index(line)
+                else:
+                    i = 0
+                    break
+            return i 
+        with open(self.filename, 'r') as file:
+            # read all content of a fileopen(self.filename,'r')
+            content = file.read()
+            letter = self.letter
+            lines = fp.readlines(letter)
+        if i != 0:  
+            i = find_line(lines,letter)
+            num_line = lines[i].split()
+            num = num_line(1)
+            return num
+        else:
+            return i
+        
+        
+   # def block_list(self):
+        
+class grid:
+    def __init__(self, filename):
+        self.filename = filename
+        self.fixed_blocks = fixed_blocks
+        self.reflect_blocks = reflect_blocks
+        self.refract_blocks = refract_blocks
+        
+    def create_grid(self):
+        #file = open(self.filename,'r')
+        def find_line(lines, word):
+            for line in lines:
+                # check if string present on a current line
+                if line.find(word) != -1:
+                    i = lines.index(line)
+                    break
+            return i 
+        rows, cols = (7,7)
+        arr = [['x']*cols]*rows
+        with open(self.filename, 'r') as file:
+            # read all content of a fileopen(self.filename,'r')
+            content = file.read()
+            lines = fp.readlines()
+            i = find_line(lines,'START')
+            l = find_line(lines,'STOP')
+        j = i+1
+        k = l-1
+        h = 0
+        for s in range(j, k):
+            txt = lines[s].split()
+            length = len(txt)
+            g = 0
+            for f in length:
+                if arr[h][g] == 'A':
+                    arr[h][g] = block('A')
+                elif arr[h][g] == 'B':
+                    arr[h][g] = block('B')
+                elif arr[h][g] == 'C':
+                    arr[h][g] = block('C')
+                else:
+                    arr[h][g] = txt[f]
+                g += 2
+            h += 2
+        return arr
